@@ -7,7 +7,7 @@ public class Main {
         Scanner sc = new Scanner(System.in);
 
         System.out.print("Enter monthly salary: ");
-        int salary = sc.nextInt();
+        int salary = readNonNegativeInt(sc);
 
         System.out.println("\nEnter allocations (amounts) for each category:");
         int bills          = readCategory(sc, "Bills");
@@ -37,7 +37,24 @@ public class Main {
 
     private static int readCategory(Scanner sc, String name) {
         System.out.print(name + ": ");
-        return sc.nextInt();
+        return readNonNegativeInt(sc);
     }
 
+    private static int readNonNegativeInt(Scanner sc) {
+        while (true) {
+            String in = sc.nextLine().trim();
+            try {
+                int val = Integer.parseInt(in);
+                if (val < 0) {
+                    System.out.print("Please enter a non-negative number: ");
+                    continue;
+                }
+                return val;
+            } catch (NumberFormatException e) {
+                System.out.print("Invalid number. Try again: ");
+            }
+        }
+
+
+    }
 }
