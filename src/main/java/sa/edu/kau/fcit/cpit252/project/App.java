@@ -16,21 +16,17 @@ public class App {
         int shopping       = readCategory(sc, "Shopping");
         int savings        = readCategory(sc, "Savings");
 
-        int totalAllocated = bills + food + transportation + entertainment + shopping + savings;
-        int remaining = salary - totalAllocated;
+        DailyRecord record = new DailyRecord.Builder()
+                .salary(salary)
+                .bills(bills)
+                .food(food)
+                .transportation(transportation)
+                .entertainment(entertainment)
+                .shopping(shopping)
+                .savings(savings)
+                .build();
 
-        System.out.println("\n========== Summary ==========");
-        System.out.println("Salary: " + salary);
-        System.out.println("Bills=" + bills);
-        System.out.println("Food=" + food);
-        System.out.println("Transportation=" + transportation);
-        System.out.println("Entertainment=" + entertainment);
-        System.out.println("Shopping=" + shopping);
-        System.out.println("Savings=" + savings);
-        System.out.println("-----------------------------");
-        System.out.println("Total Allocated: " + totalAllocated);
-        System.out.println("Remaining: " + remaining);
-
+        record.printSummary();
         sc.close();
     }
 
