@@ -1,7 +1,6 @@
 package sa.edu.kau.fcit.cpit252.project;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -79,43 +78,25 @@ public class DailyRecord {
         LocalDateTime now = LocalDateTime.now();
         DateTimeFormatter fmt = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm");
 
-        //
-        try {
-            java.nio.file.Path cwd = java.nio.file.Paths.get("").toAbsolutePath();
-            int next = 1;
-            java.util.regex.Pattern p = java.util.regex.Pattern.compile("^note(\\d+)\\.txt$");
-            try (java.util.stream.Stream<java.nio.file.Path> stream = java.nio.file.Files.list(cwd)) {
-                for (java.nio.file.Path path : (Iterable<java.nio.file.Path>) stream::iterator) {
-                    String name = path.getFileName().toString();
-                    java.util.regex.Matcher m = p.matcher(name);
-                    if (m.matches()) {
-                        int n = Integer.parseInt(m.group(1));
-                        if (n >= next) next = n + 1;
-                    }
-                }
-            } catch (Exception ignore) {}
-            //
-
-            String filename = "note" + next + ".txt";
-            try (java.io.PrintWriter out = new java.io.PrintWriter(filename, "UTF-8")) {
-                out.println("========== Summary (" + now.format(fmt) + ") ==========");
-                out.println("Salary: " + salary);
-                out.println("Bills=" + bills);
-                out.println("Food=" + food);
-                out.println("Transportation=" + transportation);
-                out.println("Entertainment=" + entertainment);
-                out.println("Shopping=" + shopping);
-                out.println("Savings=" + savings);
-                out.println("-----------------------------");
-                out.println("Total Allocated: " + totalAllocated);
-                out.println("Remaining: " + remaining);
-            }
 
 
+        StringBuilder sb = new StringBuilder();
+        sb.append("\n========== Summary (").append(now.format(fmt)).append(") ==========\n");
+        sb.append("Salary: ").append(salary).append("\n");
+        sb.append("Bills=").append(bills).append("\n");
+        sb.append("Food=").append(food).append("\n");
+        sb.append("Transportation=").append(transportation).append("\n");
+        sb.append("Entertainment=").append(entertainment).append("\n");
+        sb.append("Shopping=").append(shopping).append("\n");
+        sb.append("Savings=").append(savings).append("\n");
+        sb.append("-----------------------------\n");
+        sb.append("Total Allocated: ").append(totalAllocated).append("\n");
+        sb.append("Remaining: ").append(remaining).append("\n");
 
-        } catch (Exception e) {
-            System.out.println("Error saving summary: " + e.getMessage());
-        }
+        NoteWriter nw = NoteWriter.getInstance();
+        nw.addSummary(sb.toString());
+        nw.save();
+
     }
-
 }
+

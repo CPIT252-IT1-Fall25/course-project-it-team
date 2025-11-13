@@ -1,0 +1,13 @@
+
+========== Summary (2025/11/13 18:53) ==========
+Salary: 1200
+Bills=36
+Food=36
+Transportation=325
+Entertainment=243
+Shopping=210
+Savings=10
+-----------------------------
+Total Allocated: 860
+Remaining: 340
+
