@@ -1,6 +1,5 @@
 package sa.edu.kau.fcit.cpit252.project;
 
-
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -66,14 +65,6 @@ public class DailyRecord {
         int totalAllocated = bills + food + transportation + entertainment + shopping + savings;
         int remaining = salary - totalAllocated;
 
-        if (remaining < 0 ){
-            savings = savings + remaining;
-            if (savings < 0) {
-                System.out.println("[Warning] Allocations exceed salary by " + Math.abs(savings));
-            }
-            totalAllocated = salary;
-            remaining = 0;
-        }
 
         LocalDateTime now = LocalDateTime.now();
         DateTimeFormatter fmt = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm");
@@ -97,6 +88,8 @@ public class DailyRecord {
         nw.addSummary(sb.toString());
         nw.save();
 
+        BalanceManager sm = BalanceManager.getInstance();
+        sm.addValues(savings, remaining);
+
     }
 }
-
