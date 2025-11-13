@@ -17,7 +17,6 @@ The program takes the salary and expenses as input and then calculates the total
   - Shopping  
   - Savings  
 - Calculate total expenses and remaining balance  
-- Display a formatted summary in the console  
 - Save every run summary into a note file (`records.txt`)  
 - Keep a cumulative total of all **savings** and **remaining balance** in a separate file (`savings.txt`)  
 
