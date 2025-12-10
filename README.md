@@ -14,7 +14,7 @@ The system provides an easy interface to add new expense records, filter them, s
 - Track remaining balance and savings.
 - GUI built with Java Swing.
 
-
+---
 
 ## Design Patterns Used in SmartExpenseTracker
 
