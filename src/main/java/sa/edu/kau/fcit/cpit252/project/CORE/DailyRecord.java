@@ -92,4 +92,14 @@ public class DailyRecord {
         sm.addValues(savings, remaining);
 
     }
+
+    //for test
+    public int getSalary() { return salary; }
+    public int getBills() { return bills; }
+    public int getFood() { return food; }
+    public int getTransportation() { return transportation; }
+    public int getEntertainment() { return entertainment; }
+    public int getShopping() { return shopping; }
+    public int getSavings() { return savings; }
+
 }
