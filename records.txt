@@ -1,4 +1,64 @@
 
+========== Summary (2025/12/10 09:23) ==========
+Salary: 0
+Bills=0
+Food=50
+Transportation=0
+Entertainment=0
+Shopping=0
+Savings=0
+-----------------------------
+Total Allocated: 50
+Remaining: -50
+
+========== Summary (2025/12/10 09:24) ==========
+Salary: 0
+Bills=0
+Food=0
+Transportation=30
+Entertainment=0
+Shopping=0
+Savings=0
+-----------------------------
+Total Allocated: 30
+Remaining: -30
+
+========== Summary (2025/12/10 09:23) ==========
+Salary: 0
+Bills=0
+Food=50
+Transportation=0
+Entertainment=0
+Shopping=0
+Savings=0
+-----------------------------
+Total Allocated: 50
+Remaining: -50
+
+========== Summary (2025/12/10 08:33) ==========
+Salary: 3000
+Bills=500
+Food=100
+Transportation=200
+Entertainment=300
+Shopping=100
+Savings=1000
+-----------------------------
+Total Allocated: 2200
+Remaining: 800
+
+========== Summary (2025/12/09 14:38) ==========
+Salary: 3000
+Bills=500
+Food=200
+Transportation=100
+Entertainment=300
+Shopping=500
+Savings=1000
+-----------------------------
+Total Allocated: 2600
+Remaining: 400
+
 ========== Summary (2025/11/13 20:13) ==========
 Salary: 2000
 Bills=500
@@ -22,5 +82,111 @@ Savings=10
 -----------------------------
 Total Allocated: 860
 Remaining: 340
+
+========== Summary (2025/11/13 20:12) ==========
+Salary: 2000
+Bills=500
+Food=100
+Transportation=100
+Entertainment=200
+Shopping=100
+Savings=500
+-----------------------------
+Total Allocated: 1500
+Remaining: 500
+
+========== Summary (2025/11/13 17:48) ==========
+Salary: 3000
+Bills=1500
+Food=1000
+Transportation=500
+Entertainment=2500
+Shopping=500
+Savings=0
+-----------------------------
+Total Allocated: 6000
+Remaining: -3000
+
+========== Summary (2025/11/13 17:47) ==========
+Salary: 3000
+Bills=900
+Food=0
+Transportation=0
+Entertainment=0
+Shopping=0
+Savings=0
+-----------------------------
+Total Allocated: 900
+Remaining: 2100
+
+========== Summary (2025/11/13 17:46) ==========
+Salary: 3000
+Bills=1000
+Food=1000
+Transportation=600
+Entertainment=500
+Shopping=0
+Savings=0
+-----------------------------
+Total Allocated: 3100
+Remaining: -100
+
+========== Summary (2025/11/13 17:42) ==========
+Salary: 3000
+Bills=500
+Food=500
+Transportation=1000
+Entertainment=1000
+Shopping=500
+Savings=0
+-----------------------------
+Total Allocated: 3500
+Remaining: -500
+
+========== Summary (2025/11/12 13:56) ==========
+Salary: 3000
+Bills=1000
+Food=1000
+Transportation=500
+Entertainment=500
+Shopping=500
+Savings=-500
+-----------------------------
+Total Allocated: 3000
+Remaining: 0
+
+========== Summary (2025/11/12 13:51) ==========
+Salary: 3000
+Bills=500
+Food=250
+Transportation=100
+Entertainment=300
+Shopping=600
+Savings=1000
+-----------------------------
+Total Allocated: 2750
+Remaining: 250
+
+========== Summary (2025/11/12 13:49) ==========
+Salary: 3000
+Bills=500
+Food=100
+Transportation=200
+Entertainment=300
+Shopping=150
+Savings=1000
+-----------------------------
+Total Allocated: 2250
+Remaining: 750
+
+
+
+
+
+
+
+
+
+
 
 
