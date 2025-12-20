@@ -50,6 +50,8 @@ public class AppTest {
             assertEquals(90, record.getShopping());
             assertEquals(300, record.getSavings());
         }
+
+
     }
 
 

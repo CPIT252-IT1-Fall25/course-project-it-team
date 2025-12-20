@@ -1,6 +1,7 @@
 package sa.edu.kau.fcit.cpit252.project.GUI;
 
 import sa.edu.kau.fcit.cpit252.project.CORE.RecordFilter;
+import sa.edu.kau.fcit.cpit252.project.CORE.MonthlySummary;
 
 import javax.swing.*;
 import java.awt.*;
@@ -14,12 +15,13 @@ public class FilterGUI extends JFrame {
 
     public FilterGUI() {
         setTitle("Filter Records By Date");
-        setSize(600, 400);
+        setSize(650, 450);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
 
         setLayout(new BorderLayout(10, 10));
-        ((JComponent) getContentPane()).setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+        ((JComponent) getContentPane())
+                .setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 
         JPanel inputPanel = new JPanel(new GridLayout(3, 2, 8, 8));
 
@@ -31,7 +33,7 @@ public class FilterGUI extends JFrame {
         monthField = new JTextField();
         inputPanel.add(monthField);
 
-        inputPanel.add(new JLabel("Day: (optional)"));
+        inputPanel.add(new JLabel("Day (optional):"));
         dayField = new JTextField();
         inputPanel.add(dayField);
 
@@ -42,39 +44,65 @@ public class FilterGUI extends JFrame {
         add(new JScrollPane(resultArea), BorderLayout.CENTER);
 
         JPanel buttonPanel = new JPanel();
+
         JButton filterButton = new JButton("Show Records");
+        JButton summaryButton = new JButton("Monthly Summary");
+
         buttonPanel.add(filterButton);
+        buttonPanel.add(summaryButton);
+
         add(buttonPanel, BorderLayout.SOUTH);
 
         filterButton.addActionListener(e -> onFilter());
+        summaryButton.addActionListener(e -> onMonthlySummary());
     }
 
     private void onFilter() {
 
-        String yearText = yearField.getText().trim();
-        String monthText = monthField.getText().trim();
-        String dayText = dayField.getText().trim();
+        try {
+            int year = Integer.parseInt(yearField.getText().trim());
+            int month = Integer.parseInt(monthField.getText().trim());
 
-        int year, month;
+            Integer day = null;
+            if (!dayField.getText().trim().isEmpty()) {
+                day = Integer.parseInt(dayField.getText().trim());
+            }
+
+            String result = RecordFilter.getRecordsByDate(year, month, day);
+            resultArea.setText(result);
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Please enter valid year and month.",
+                    "Input Error",
+                    JOptionPane.ERROR_MESSAGE
+            );
+        }
+    }
+
+    private void onMonthlySummary() {
 
         try {
-            year = Integer.parseInt(yearText);
-            month = Integer.parseInt(monthText);
-        } catch (Exception ex) {
-            return;
+            int year = Integer.parseInt(yearField.getText().trim());
+            int month = Integer.parseInt(monthField.getText().trim());
+
+            String summary = MonthlySummary.getMonthlySummary(year, month);
+
+            JOptionPane.showMessageDialog(
+                    this,
+                    summary,
+                    "Monthly Summary",
+                    JOptionPane.INFORMATION_MESSAGE
+            );
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Please enter valid year and month.",
+                    "Input Error",
+                    JOptionPane.ERROR_MESSAGE
+            );
         }
-
-        Integer day = null;
-        if (!dayText.isEmpty()) {
-            try {
-                day = Integer.parseInt(dayText);
-            } catch (Exception ex) {
-                day = null;
-            }
-        }
-
-        String result = RecordFilter.getRecordsByDate(year, month, day);
-
-        resultArea.setText(result);
     }
 }

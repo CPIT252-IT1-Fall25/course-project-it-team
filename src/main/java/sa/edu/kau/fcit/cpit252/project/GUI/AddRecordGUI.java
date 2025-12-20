@@ -2,6 +2,12 @@ package sa.edu.kau.fcit.cpit252.project.GUI;
 
 import sa.edu.kau.fcit.cpit252.project.CORE.BalanceManager;
 import sa.edu.kau.fcit.cpit252.project.CORE.DailyRecord;
+import sa.edu.kau.fcit.cpit252.project.CORE.BudgetLimits;
+import sa.edu.kau.fcit.cpit252.project.CORE.SpendingAnalysis;
+
+
+
+
 
 import javax.swing.*;
 import java.awt.*;
@@ -110,17 +116,30 @@ public class AddRecordGUI extends JFrame {
 
 
     private void onSave() {
-        try {
-            int salary = safeParse(salaryField);
-            int bills = safeParse(billsField);
-            int food = safeParse(foodField);
-            int transportation = safeParse(transportationField);
-            int entertainment = safeParse(entertainmentField);
-            int shopping = safeParse(shoppingField);
-            int savings = safeParse(savingsField);
 
-            int totalAllocated = bills + food + transportation + entertainment + shopping + savings;
-            int remaining = salary - totalAllocated;
+        try {
+            int salary = parseNonNegativeInt(salaryField, "Salary");
+            int bills = parseNonNegativeInt(billsField, "Bills");
+            int food = parseNonNegativeInt(foodField, "Food");
+            int transportation = parseNonNegativeInt(transportationField, "Transportation");
+            int entertainment = parseNonNegativeInt(entertainmentField, "Entertainment");
+            int shopping = parseNonNegativeInt(shoppingField, "Shopping");
+            int savings = parseNonNegativeInt(savingsField, "Savings");
+
+            int totalAllocated = bills + food + transportation
+                    + entertainment + shopping + savings;
+
+            if (totalAllocated > salary) {
+                throw new IllegalArgumentException("Expenses exceed salary!");
+            }
+
+            String warnings = BudgetLimits.check(
+                    bills, food, transportation, entertainment, shopping);
+
+            if (!warnings.isEmpty()) {
+                JOptionPane.showMessageDialog(this, warnings,
+                        "Budget Warning", JOptionPane.WARNING_MESSAGE);
+            }
 
             DailyRecord record = new DailyRecord.Builder()
                     .salary(salary)
@@ -135,11 +154,17 @@ public class AddRecordGUI extends JFrame {
             record.printSummary();
 
             recordTotalLabel.setText("Record Total Allocated: " + totalAllocated);
-            recordRemainingLabel.setText("Record Remaining: " + remaining);
+            recordRemainingLabel.setText("Record Remaining: " + (salary - totalAllocated));
 
             BalanceManager bm = BalanceManager.getInstance();
             totalSavingsLabel.setText("Total Savings (file): " + bm.getTotalSavings());
             totalRemainingLabel.setText("Total Remaining (file): " + bm.getTotalRemaining());
+
+            String analysis = SpendingAnalysis.analyze(
+                    bills, food, transportation, entertainment, shopping);
+
+            JOptionPane.showMessageDialog(this, analysis,
+                    "Spending Analysis", JOptionPane.INFORMATION_MESSAGE);
 
             JOptionPane.showMessageDialog(this,
                     "Record saved successfully!",
@@ -148,12 +173,12 @@ public class AddRecordGUI extends JFrame {
 
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this,
-                    "Unexpected error: " + ex.getMessage(),
-                    "Error",
+                    ex.getMessage(),
+                    "Input Error",
                     JOptionPane.ERROR_MESSAGE);
-            ex.printStackTrace();
         }
     }
+
 
     private void onClear() {
         salaryField.setText("");
